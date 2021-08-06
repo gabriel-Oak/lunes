@@ -1,0 +1,62 @@
+{
+  "trigger": {
+    "triggers": [
+      "lunes",
+      "nunes",
+      "nudes",
+      "nune",
+      "lunis",
+      "noni",
+      "luiz",
+      "elaine",
+      "lanes",
+      "lanis",
+      "lurdes",
+      "drones",
+      "lulis",
+      "lonis"
+    ],
+    "answers": [
+      "olá!",
+      "pode falar!",
+      "oi!",
+      "estou ouvindo!",
+      "diga!",
+      "na escuta!"
+    ]
+  },
+  "cancel": {
+    "triggers": ["cancelar", "deixa pra lá", "deixa para lá", "esquece"],
+    "answers": ["Ok, cancelando!", "Tá bom!", "Tudo bem!", "Adíos!", "Ok!"]
+  },
+  "good_morning": {
+    "triggers": ["bom dia", "boa manhã"],
+    "answers": [
+      "Bom dia para você também!",
+      "Bom dia!",
+      "Oi; que dia maravilhoso!",
+      "Raios de luz para você!",
+      "Bora tomar um café?"
+    ]
+  },
+  "greetins": {
+    "triggers": [
+      "olá",
+      "oi",
+      "saudações",
+      "hello",
+      "e aí",
+      "eae",
+      "como vai",
+      "joia",
+      "tudo bem"
+    ],
+    "answers": [
+      "Olá!",
+      "Saudações!",
+      "Hi!",
+      "Tranquilo como esquilo?",
+      "Eai manolo?"
+    ]
+  }
+}
