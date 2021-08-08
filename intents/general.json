@@ -14,7 +14,8 @@
       "lurdes",
       "drones",
       "lulis",
-      "lonis"
+      "lonis",
+      "lourdes"
     ],
     "answers": [
       "olá!",
@@ -26,7 +27,7 @@
     ]
   },
   "cancel": {
-    "triggers": ["cancelar", "deixa pra lá", "deixa para lá", "esquece"],
+    "triggers": ["cancelar", "deixa pra lá", "deixa para lá", "esquece", "cancela"],
     "answers": ["Ok, cancelando!", "Tá bom!", "Tudo bem!", "Adíos!", "Ok!"]
   },
   "good_morning": {
@@ -46,17 +47,32 @@
       "saudações",
       "hello",
       "e aí",
-      "eae",
-      "como vai",
-      "joia",
-      "tudo bem"
+      "eae"
     ],
     "answers": [
       "Olá!",
       "Saudações!",
-      "Hi!",
       "Tranquilo como esquilo?",
-      "Eai manolo?"
+      "Eaí manolo?",
+      "Fala memo!"
+    ]
+  },
+  "how_are": {
+    "triggers": [
+      "tudo bem",
+      "como vai",
+      "como está",
+      "como você está",
+      "joia",
+      "tranquilo?",
+      "beleza"
+    ],
+    "answers": [
+      "Eu estou bem, obrigada, e você?",
+      "Suave na nave, lança a braba",
+      "De boa na lagoa, e tu?",
+      "Tudo bem aqui, e por aí?",
+      "Estou ótima, é tão bom existir. E você?"
     ]
   }
 }

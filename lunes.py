@@ -1,4 +1,4 @@
-from create_audios import play_audio
+from play_audio import play_audio
 import speech_recognition as sr
 import json
 import random
@@ -21,7 +21,7 @@ def process_command():
             return  play_audio(random.choice(general_intents[intent]['answers']))
 
       play_audio('Não entendi, tente de novo!')
-    except sr.UnknownValueError as e:
+    except:
       return print('[log] Não entendi, tente de novo!')
         
 
@@ -44,12 +44,12 @@ def monitor():
           process_command()
           break
 
-    except sr.UnknownValueError as e:
+    except sr.UnknownValueError:
       print('[log] Não entendi o quê você disse. Ou você não disse nada haha!')
 
     except sr.RequestError as e:
       print('[log] Error; {0}'.format(e))
       play_audio('Algo deu errado, você está conectado à internet?')
 
-play_audio('Olá! Eu sou Lunes')
+play_audio('Olá! Eu sou Lunes!')
 monitor()
