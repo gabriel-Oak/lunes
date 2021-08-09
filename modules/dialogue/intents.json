@@ -16,7 +16,34 @@
       "Bom dia!",
       "Oi; que dia maravilhoso!",
       "Raios de luz para você!",
-      "Bora tomar um café?"
+      "Bora tomar um café?",
+      "Vamo animar, vamo animar, bom dia!"
+    ]
+  },
+  "good_evening": {
+    "triggers": ["boa tarde"],
+    "answers": [
+      "Boa tarde!",
+      "Tarde! Bora agitar",
+      "Boa tarde! Como está seu dia?"
+    ]
+  },
+  "good_night": {
+    "triggers": [
+      "boa noite",
+      "vou dormir",
+      "vamos dormir",
+      "bora dormir",
+      "hora de dormir",
+      "vou para cama",
+      "vou pra cama"
+    ],
+    "answers": [
+      "Boa noite!",
+      "Bom sonhos, não deixe que os pernilongos te mordam",
+      "Vamos fechar os olhinhos e contar carneirinhos?",
+      "Partiu cama!",
+      "Boa noite, não esqueça de beber agua e ir ao banheiro!"
     ]
   },
   "greetins": {
@@ -46,6 +73,24 @@
       "De boa na lagoa, e tu?",
       "Tudo bem aqui, e por aí?",
       "Estou ótima, é tão bom existir. E você?"
+    ]
+  },
+  "made_by": {
+    "triggers": [
+      "quem te criou",
+      "quem fez você",
+      "quem é seu pai",
+      "quem é seu criador",
+      "como é seu criador",
+      "quem criou você",
+      "quem te fez",
+      "como é seu pai"
+    ],
+    "answers": [
+      "Eu fui criada por Gabriel Carvalho Costa. Ele é meio reservado, mas tem bom coração!",
+      "Meu programador é Gabriel Carvalho Costa. Ele escreveu meu fonte com muito carinho!",
+      "O mais próximo de pai que eu tenho é o Gabriel Carvalho Costa",
+      "Meu criador é Gabriel Carvalho Costa, dê uma olhada no github dele: gabriel-Oak"
     ]
   }
 }

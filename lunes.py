@@ -1,8 +1,9 @@
+import json
+import random
 from modules.index import MODULES
 from utils.play_audio import play_audio
 import speech_recognition as sr
-import json
-import random
+from playsound import playsound
 
 with open('intents/general.json') as general:
   general_intents = json.load(general)
@@ -39,7 +40,7 @@ def monitor():
 
       for trigger in general_intents['trigger']['triggers']:
         if trigger in speech: 
-          play_audio(random.choice(general_intents['trigger']['answers']))
+          playsound('audios/trigger.mp3')
           process_command()
           break
 

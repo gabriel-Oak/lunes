@@ -1,0 +1,13 @@
+{
+  "joke": {
+    "triggers": ["piada"],
+    "answers": [
+      "Aqui vai uma!",
+      "Ok, lançando a bra ba!",
+      "Segura aí!",
+      "Piada saindo do forno!",
+      "Essa vai ser boa, olha!",
+      "Encontrei uma muito ruim:"
+    ]
+  }
+}
