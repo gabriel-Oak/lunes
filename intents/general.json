@@ -26,5 +26,13 @@
       "diga!",
       "na escuta!"
     ]
+  },
+  "belongs": {
+    "triggers":[
+      "de ",
+      "da ",
+      "com ",
+      "do "
+    ]
   }
 }
