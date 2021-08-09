@@ -25,54 +25,5 @@
       "diga!",
       "na escuta!"
     ]
-  },
-  "cancel": {
-    "triggers": ["cancelar", "deixa pra lá", "deixa para lá", "esquece", "cancela"],
-    "answers": ["Ok, cancelando!", "Tá bom!", "Tudo bem!", "Adíos!", "Ok!"]
-  },
-  "good_morning": {
-    "triggers": ["bom dia", "boa manhã"],
-    "answers": [
-      "Bom dia para você também!",
-      "Bom dia!",
-      "Oi; que dia maravilhoso!",
-      "Raios de luz para você!",
-      "Bora tomar um café?"
-    ]
-  },
-  "greetins": {
-    "triggers": [
-      "olá",
-      "oi",
-      "saudações",
-      "hello",
-      "e aí",
-      "eae"
-    ],
-    "answers": [
-      "Olá!",
-      "Saudações!",
-      "Tranquilo como esquilo?",
-      "Eaí manolo?",
-      "Fala memo!"
-    ]
-  },
-  "how_are": {
-    "triggers": [
-      "tudo bem",
-      "como vai",
-      "como está",
-      "como você está",
-      "joia",
-      "tranquilo?",
-      "beleza"
-    ],
-    "answers": [
-      "Eu estou bem, obrigada, e você?",
-      "Suave na nave, lança a braba",
-      "De boa na lagoa, e tu?",
-      "Tudo bem aqui, e por aí?",
-      "Estou ótima, é tão bom existir. E você?"
-    ]
   }
 }

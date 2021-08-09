@@ -1,4 +1,5 @@
-from play_audio import play_audio
+from modules.index import MODULES
+from utils.play_audio import play_audio
 import speech_recognition as sr
 import json
 import random
@@ -10,22 +11,20 @@ def process_command():
   while True:
     try:
       print('[log] processando comando')
-      speech = listen()
+      speech: str = listen()
       print('[input] ' + speech)
 
-      general_intents_keys = list(filter(lambda intent: intent != 'trigger' , general_intents.keys()))
-      
-      for intent in general_intents_keys:
-        for trigger in general_intents[intent]['triggers']:
-          if trigger in speech:
-            return  play_audio(random.choice(general_intents[intent]['answers']))
+      for module in MODULES:
+        intent = module.checkIntent(speech)
+        if type(intent) == str: 
+          return module.processCommand(intent, speech)
 
       play_audio('Não entendi, tente de novo!')
     except:
       return print('[log] Não entendi, tente de novo!')
         
 
-def listen():
+def listen() -> str:
   mic = sr.Recognizer()
   with sr.Microphone() as source:
     audio = mic.listen(source)

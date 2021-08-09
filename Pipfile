@@ -8,6 +8,7 @@ pyaudio = "*"
 speechrecognition = "*"
 playsound = "*"
 gtts = "*"
+boto3 = "*"
 
 [dev-packages]
 

@@ -9,7 +9,7 @@ polly = boto3.Session(
 ).client('polly')
 
 
-def play_audio(speech):
+def play_audio(speech: str):
   print('[output] ' + speech)
   response = polly.synthesize_speech(
     Text = speech, 
@@ -21,4 +21,5 @@ def play_audio(speech):
   with open(file_name, 'wb') as file:
     file.write(body)
     file.close()
+    
   playsound('audios/tts.mp3')
