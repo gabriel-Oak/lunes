@@ -37,11 +37,13 @@ class FunModule(Module):
         belong = trigger.replace(' ', '')
         break
 
-    if type(belong) == str:
+    if belong:
       category = speech.split(' ')
       i = category.index(belong) + 1
+      if i > len(category):
+        raise Exception('Desculpe, não entendi o tipo da piada, por favor, tente de novo!')
+
       category = category[i]
-      print(category, 'category')
       filteredJokes = list(filter(
         lambda joke: category in joke['category'].lower(), 
         jokes,

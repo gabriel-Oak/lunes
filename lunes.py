@@ -9,6 +9,7 @@ with open('intents/general.json') as general:
   general_intents = json.load(general)
 
 def process_command():
+  tryies = 0
   while True:
     try:
       print('[log] processando comando')
@@ -19,10 +20,16 @@ def process_command():
         intent = module.checkIntent(speech)
         if type(intent) == str: 
           return module.processCommand(intent, speech)
+      raise Exception('Não entendi, tente de novo!')
 
-      play_audio('Não entendi, tente de novo!')
-    except:
-      return print('[log] Não entendi, tente de novo!')
+    except sr.UnknownValueError:
+      print('[log] Não entendi o quê você disse. Ou você não disse nada haha!')
+
+    except Exception as e:
+      if tryies > 3: return None 
+      tryies += 1
+      play_audio(str(e))
+      
         
 
 def listen() -> str:
