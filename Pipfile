@@ -9,6 +9,10 @@ speechrecognition = "*"
 playsound = "*"
 gtts = "*"
 boto3 = "*"
+requests = "*"
+bs4 = "*"
+spotify2py = "*"
+python-decouple = "*"
 
 [dev-packages]
 

@@ -30,27 +30,19 @@ class FunModule(Module):
 
   def processJoke(self, speech: str) -> None:
     play_audio(random.choice(self.intents['joke'].answers))
-    belong = None
-    joke = None
+    joke = random.choice(jokes)
+
     for trigger in belongs:
       if trigger in speech:
-        belong = trigger.replace(' ', '')
-        break
-
-    if belong:
-      category = speech.split(' ')
-      i = category.index(belong) + 1
-      if i > len(category):
-        raise Exception('Desculpe, não entendi o tipo da piada, por favor, tente de novo!')
-
-      category = category[i]
-      filteredJokes = list(filter(
-        lambda joke: category in joke['category'].lower(), 
+        query = speech.split(trigger)
+        if len(query) < 2: 
+          raise Exception('Desculpe, não entendi o tipo da piada, por favor, tente de novo!')
+        filteredJokes = list(filter(
+        lambda joke: query[1] in joke['category'].lower(), 
         jokes,
       ))
       joke = random.choice(filteredJokes)
-    else:
-      joke = random.choice(jokes)
+      break
 
     for phrase in joke['joke']:
       play_audio(phrase)

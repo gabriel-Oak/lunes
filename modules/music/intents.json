@@ -1,0 +1,18 @@
+{
+  "playlist": {
+    "triggers": [
+      "spotify",
+      "toca",
+      "reproduza",
+      "toque",
+      "reproduzir",
+      "tocar",
+      "música"
+    ],
+    "answers": [
+      "Tocando música no spotify",
+      "Reproduzindo no spotify",
+      "Abrindo spotify"
+    ]
+  }
+}

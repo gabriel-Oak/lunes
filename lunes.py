@@ -58,5 +58,5 @@ def monitor():
       print('[log] Error; {0}'.format(e))
       play_audio('Algo deu errado, você está conectado à internet?')
 
-play_audio('Olá! Eu sou Lunes!')
+play_audio('Olá! Eu sou Lúnis!')
 monitor()

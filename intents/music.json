@@ -1,0 +1,49 @@
+{
+  "playlist": {
+    "triggers": [ 
+      "playlist "
+    ],
+    "answers": [
+      "Ok, tocando a playlist: ",
+      "Reproduzindo: ",
+      "Mandando: "
+    ]
+  },
+  "music": {
+    "triggers": [
+      "musica ",
+      "toca ",
+      "reproduza ",
+      "abra ",
+      "tocar "
+    ],
+    "answers": [
+      "Ok, tocando a playlist: ",
+      "Reproduzindo: ",
+      "Mandando: "
+    ]
+  },
+  "album": {
+    "triggers": [
+      "album "
+    ],
+    "answers": [
+      "Ok, tocando o album: ",
+      "Reproduzindo: ",
+      "Mandando: "
+    ]
+  }, 
+  "artist": {
+    "triggers": [
+      "artista ",
+      "cantor ",
+      "musico ",
+      "dj "
+    ],
+    "answers": [
+      "Ok, tocando o artista: ",
+      "Reproduzindo musicas de: ",
+      "Mandando: "
+    ]
+  }
+}
