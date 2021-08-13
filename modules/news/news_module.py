@@ -24,13 +24,13 @@ class NewsModule(Module):
 
     super().__init__(intents)
 
-  def processCommand(self, intent: str, speech: str) -> None:
+  def process_command(self, intent: str, speech: str) -> None:
     try:
       source = get('https://news.google.com/rss?hl=pt-BR&gl=BR&ceid=BR:pt-419')
       news = BeautifulSoup(source.text, 'html.parser')
 
       play_audio(random.choice(self.intents[intent].answers))
-      for item in news.findAll('item')[:3]:
+      for item in news.findAll('item')[:10]:
         title = item.title.text
         play_audio(title)
     except Exception as e:

@@ -1,5 +1,5 @@
 import json
-import random
+from utils.listen import listen
 from modules.index import MODULES
 from utils.play_audio import play_audio
 import speech_recognition as sr
@@ -14,12 +14,11 @@ def process_command():
     try:
       print('[log] processando comando')
       speech: str = listen()
-      print('[input] ' + speech)
 
       for module in MODULES:
         intent = module.checkIntent(speech)
         if type(intent) == str: 
-          return module.processCommand(intent, speech)
+          return module.process_command(intent, speech)
       raise Exception('Não entendi, tente de novo!')
 
     except sr.UnknownValueError:
@@ -29,21 +28,13 @@ def process_command():
       if tryies > 3: return None 
       tryies += 1
       play_audio(str(e))
-      
-        
-
-def listen() -> str:
-  mic = sr.Recognizer()
-  with sr.Microphone() as source:
-    audio = mic.listen(source)
-  return mic.recognize_google(audio, language='pt-BR').lower()
+      playsound('audios/trigger.mp3')
 
 def monitor():
   while True:
     try:
       print('[log] monitorando trigger')
       speech = listen()
-      print('[input] ' + speech)
 
       for trigger in general_intents['trigger']['triggers']:
         if trigger in speech: 

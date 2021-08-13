@@ -13,6 +13,7 @@ requests = "*"
 bs4 = "*"
 spotify2py = "*"
 python-decouple = "*"
+tuya-iot-py-sdk = "*"
 
 [dev-packages]
 

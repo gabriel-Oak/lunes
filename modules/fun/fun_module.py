@@ -28,7 +28,7 @@ class FunModule(Module):
 
     super().__init__(intents)
 
-  def processJoke(self, speech: str) -> None:
+  def process_joke(self, speech: str) -> None:
     play_audio(random.choice(self.intents['joke'].answers))
     joke = random.choice(jokes)
 
@@ -47,8 +47,8 @@ class FunModule(Module):
     for phrase in joke['joke']:
       play_audio(phrase)
 
-  def processCommand(self, intent: str, speech: str) -> None:
-    if (intent == 'joke'): self.processJoke(speech=speech)
+  def process_command(self, intent: str, speech: str) -> None:
+    if (intent == 'joke'): self.process_joke(speech=speech)
     else: play_audio(random.choice(self.intents[intent].answers))
 
     

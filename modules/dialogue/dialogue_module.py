@@ -21,5 +21,5 @@ class DialogueModule(Module):
 
     super().__init__(intents)
 
-  def processCommand(self, intent: str, speech: str) -> None:
+  def process_command(self, intent: str, speech: str) -> None:
     play_audio(random.choice(self.intents[intent].answers))

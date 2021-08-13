@@ -1,3 +1,4 @@
+from modules.iot.iot_module import IotModule
 from modules.music.music_module import MusicModule
 from modules.news.news_module import NewsModule
 from modules.fun.fun_module import FunModule
@@ -10,4 +11,5 @@ MODULES: List[Module] = [
   DialogueModule(),
   NewsModule(),
   MusicModule(),
+  IotModule()
 ]

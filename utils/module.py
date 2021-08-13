@@ -8,7 +8,7 @@ class Module:
   def __init__(self, intents: Dict[str, Intent]) -> None:
       self.intents = intents
 
-  def processCommand(self, intent: str, speech: str) -> None:
+  def process_command(self, intent: str, speech: str) -> None:
     return
 
   def checkIntent(self, speech: str) -> Union[str, None]:

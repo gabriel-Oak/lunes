@@ -1,0 +1,40 @@
+{
+  "turn_on": {
+    "triggers": [
+      "liga",
+      "ligue",
+      "ligado",
+      "ligada",
+      "acenda",
+      "acende",
+      "acender",
+      "ligar",
+      "aceso"
+    ],
+    "answers": [
+      "Eu poderia dizer: tudo bem",
+      "Ok!",
+      "Entendido",
+      "É para já",
+      "Pronto!"
+    ]
+  },
+  "turn_off": {
+    "triggers": [
+      "desliga",
+      "desligue",
+      "desligado",
+      "desligada",
+      "apaga",
+      "apagar",
+      "apagado"
+    ],
+    "answers": [
+      "Eu poderia dizer: tudo bem",
+      "Ok!",
+      "Entendido",
+      "É para já",
+      "Pronto!"
+    ]
+  }
+}

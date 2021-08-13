@@ -8,7 +8,6 @@ from utils.module import Module
 from utils.play_audio import play_audio
 from spotify2py import Spotify
 from decouple import config
-from requests import get, post
 
 SPOTIFY_ID = config('SPOTIFY_ID')
 SPOTIFY_SECRET = config('SPOTIFY_SECRET')
@@ -37,22 +36,34 @@ class MusicModule(Module):
     self.spotify = Spotify(token=self.token)
     super().__init__(intents)
 
-  def processCommand(self, intent: str, speech: str) -> None:
+  def process_command(self, intent: str, speech: str) -> None:
     intention = self.get_intention(speech=speech)
     try:
       if not intention or intention['query'] == 'música':
+        play_audio(random.choice(self.intents['playlist']['answers']))
         browser.open('https://open.spotify.com/collection/tracks')
       else:
+
         if intention['intent'] == 'music': 
           self.spotify.play(intention['query'])
+          play_audio(
+            random.choice(music_intents['music']['answers']) + intention['query']
+          )
         elif intention['intent'] == 'artist':
           artist = self.spotify.get_artist(intention['query'])
+          play_audio(
+            random.choice(music_intents['artist']['answers']) + artist['name']
+          )
           browser.open(artist['artist_url'])
         elif intention['intent'] == 'album':
           album = self.spotify.get_album(intention['query'])
+          play_audio(
+            random.choice(music_intents['album']['answers']) + album['name']
+          )
           browser.open(album['album_url'])
         else:
-          browser.open('https://open.spotify.com/search/{0}'.format(intention['query']))
+          browser.open('https://open.spotify.com/search/{0}'.format(intention['query']))        
+          play_audio(random.choice(self.intents['playlist']['answers']))
 
     except Exception as e:
       print(e)
