@@ -14,7 +14,7 @@ class IotDevice:
     self.lat: str = device['lat']
     self.lon: str = device['lon']
     self.local_key: str = device['local_key']
-    self.name: str = device['name']
+    self.name: str = device['name'].lower()
     self.online: bool = device['online']
     self.owner_id: str = device['owner_id']
     self.product_id: str = device['product_id']

@@ -38,10 +38,10 @@ class FunModule(Module):
         if len(query) < 2: 
           raise Exception('Desculpe, não entendi o tipo da piada, por favor, tente de novo!')
         filteredJokes = list(filter(
-        lambda joke: query[1] in joke['category'].lower(), 
-        jokes,
-      ))
-      joke = random.choice(filteredJokes)
+          lambda joke: query[1] in joke['category'].lower(), 
+          jokes,
+        ))
+        joke = random.choice(filteredJokes)
       break
 
     for phrase in joke['joke']:

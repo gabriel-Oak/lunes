@@ -40,7 +40,6 @@ class IotModule(Module):
     super().__init__(intents)
 
   def process_command(self, intent: str, speech: str) -> None:
-    play_audio(random.choice(self.intents[intent].answers))
     if intent in ['turn_on', 'turn_off']:
       self.process_switch(intent=intent, speech=speech)
 
@@ -54,6 +53,7 @@ class IotModule(Module):
     if not device: raise Exception('Desculpe, não encontrei: ' + sanitized_speech)
 
     try:
+      play_audio(random.choice(self.intents[intent].answers))
       res = self.openapi.post(
         '/v1.0/devices/{0}/commands'.format(device.id), 
         {
@@ -79,9 +79,8 @@ class IotModule(Module):
       if not selected_device_diffs or diff_count < selected_device_diffs:
         selected_device_diffs = diff_count
         selected_device = self.devices[key]
-        print(key)
 
-    if selected_device_diffs <= 4:
+    if selected_device_diffs <= 6:
       return selected_device
 
     play_audio('Você quis dizer: {0} ?'.format(selected_device.name))

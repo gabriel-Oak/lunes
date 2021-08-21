@@ -4,16 +4,20 @@ from modules.index import MODULES
 from utils.play_audio import play_audio
 import speech_recognition as sr
 from playsound import playsound
+from re import sub
 
 with open('intents/general.json') as general:
   general_intents = json.load(general)
 
-def process_command():
+def process_command(trigger: str, speech_initial: str):
   tryies = 0
   while True:
     try:
       print('[log] processando comando')
-      speech: str = listen()
+      speech: str = sub(r'\s{2}', ' ', ''.join(speech_initial.split(trigger)))
+      
+      if len(speech_initial) == len(trigger) or tryies > 0: 
+        speech = listen()
 
       for module in MODULES:
         intent = module.checkIntent(speech)
@@ -39,7 +43,7 @@ def monitor():
       for trigger in general_intents['trigger']['triggers']:
         if trigger in speech: 
           playsound('audios/trigger.mp3')
-          process_command()
+          process_command(trigger, speech)
           break
 
     except sr.UnknownValueError:
