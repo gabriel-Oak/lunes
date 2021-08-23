@@ -11,7 +11,7 @@ from utils.play_audio import play_audio
 from tuya_iot import TuyaOpenAPI , tuya_logger
 from decouple import config
 import difflib
-from re import sub
+from re import sub, findall
 
 TUYA_URL = config('TUYA_URL')
 TUYA_ID = config('TUYA_ID')
@@ -39,37 +39,7 @@ class IotModule(Module):
 
     super().__init__(intents)
 
-  def process_command(self, intent: str, speech: str) -> None:
-    if intent in ['turn_on', 'turn_off']:
-      self.process_switch(intent=intent, speech=speech)
-
-  def process_switch(self, intent: str, speech: str):
-    sanitized_speech = speech
-    for trigger in self.intents[intent].triggers:
-      if trigger in speech: 
-        sanitized_speech = sub(r'\s{2}', ' ', ''.join(sanitized_speech.split(trigger)))
-
-    device = self.get_device(sanitized_speech)
-    if not device: raise Exception('Desculpe, não encontrei: ' + sanitized_speech)
-
-    try:
-      play_audio(random.choice(self.intents[intent].answers))
-      res = self.openapi.post(
-        '/v1.0/devices/{0}/commands'.format(device.id), 
-        {
-          'commands': [{
-            'code': 'switch_led', 
-            'value':  True if intent == 'turn_on' else False,
-          }]
-        }
-      )
-      if not res['success']: raise Exception()
-    except Exception as e:
-      print(e)
-      raise Exception('Desculpe, não consegui operar o dispositivo, ele pode estar offline, tente denovo!')
-      
-    
-  def get_device(self, speech: str) -> Union[IotDevice, None]:
+  def get_device(self, speech: str) -> IotDevice:
     selected_device: IotDevice = None
     selected_device_diffs: int = None
     
@@ -86,7 +56,60 @@ class IotModule(Module):
     play_audio('Você quis dizer: {0} ?'.format(selected_device.name))
     answer = listen()
     if 'sim' in answer: return selected_device
-    
+    raise Exception('Desculpe, não encontrei: ' + speech)
+
+  def get_code(self, device: IotDevice, keyword: str) -> str:
+    code = None
+    for status in device.status:
+      if keyword in status.code: 
+        code = status.code
+    if code: return code
+    raise Exception('Desculpe, não encontrei o comando no dispositivo, procurei por: ' + keyword)
+
+
+  def sanitize_speech(self, speech: str, intent: str ):
+    sanitized_speech = speech
+    for trigger in self.intents[intent].triggers:
+      if trigger in speech: 
+        sanitized_speech = sub(r'\s{2}', ' ', ''.join(sanitized_speech.split(trigger)))
+    return sanitized_speech
+
+  def process_switch(self, intent: str, speech: str):
+    numbers: list = findall('[0-9]+', str)
+    if len(numbers) < 1: raise Exception('Vixe, não encontrei o valor da temperatura não')
+    temperature = int(numbers.pop())
+
+    sanitized_speech = self.sanitize_speech(
+      speech=sub(r'\s{2}', ' ', ''.join(speech.split(str(temperature)))), 
+      intent=intent
+    )
+    device = self.get_device(sanitized_speech)
+    code = self.get_code(device=device, keyword='switch')
+
+    try:
+      play_audio(random.choice(self.intents[intent].answers))
+      res = self.openapi.post(
+        '/v1.0/devices/{0}/commands'.format(device.id), 
+        {
+          'commands': [{
+            'code': code, 
+            'value':  temperature,
+          }]
+        }
+      )
+      if not res['success']: raise Exception()
+    except Exception as e:
+      print(e)
+      raise Exception('Desculpe, não consegui operar o dispositivo, ele pode estar offline, tente denovo!')    
+
+  def process_temperature(self, intent: str, speech: str):
+    sanitized_speech = self.sanitize_speech(speech=speech, intent=intent)
+    device = self.get_device(sanitized_speech)
+    code = self.get_code(device=device, keyword='temp')
+
+  def process_command(self, intent: str, speech: str) -> None:
+    if intent in ['turn_on', 'turn_off']:
+      return self.process_switch(intent=intent, speech=speech)
 
   def setup_iot(self):
     try:

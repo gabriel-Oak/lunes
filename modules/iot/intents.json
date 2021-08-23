@@ -1,4 +1,22 @@
 {
+  "turn_off": {
+    "triggers": [
+      "desliga",
+      "desligue",
+      "desligado",
+      "desligada",
+      "apaga",
+      "apagar",
+      "apagado"
+    ],
+    "answers": [
+      "Eu poderia dizer: tudo bem",
+      "Ok!",
+      "Entendido",
+      "É para já",
+      "Pronto!"
+    ]
+  },
   "turn_on": {
     "triggers": [
       "liga",
@@ -19,22 +37,17 @@
       "Pronto!"
     ]
   },
-  "turn_off": {
+  "temperature": {
     "triggers": [
-      "desliga",
-      "desligue",
-      "desligado",
-      "desligada",
-      "apaga",
-      "apagar",
-      "apagado"
+      "temperatura",
+      "calor"
     ],
     "answers": [
       "Eu poderia dizer: tudo bem",
       "Ok!",
-      "Entendido",
+      "Mudando temperatura",
       "É para já",
-      "Pronto!"
+      "Feito!"
     ]
   }
 }
