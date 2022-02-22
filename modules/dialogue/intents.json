@@ -25,7 +25,8 @@
     "answers": [
       "Boa tarde!",
       "Tarde! Bora agitar",
-      "Boa tarde! Como está seu dia?"
+      "Boa tarde! Como está seu dia?",
+      "Vamo lá, que foguete não dá ré, e já estamos na metade!"
     ]
   },
   "good_night": {
@@ -90,7 +91,8 @@
       "Eu fui criada por Gabriel Carvalho Costa. Ele é meio reservado, mas tem bom coração!",
       "Meu programador é Gabriel Carvalho Costa. Ele escreveu meu fonte com muito carinho!",
       "O mais próximo de pai que eu tenho é o Gabriel Carvalho Costa",
-      "Meu criador é Gabriel Carvalho Costa, dê uma olhada no github dele: gabriel-Oak"
+      "Meu criador é Gabriel Carvalho Costa, dê uma olhada no github dele: gabriel-Oak",
+      "Fui desenvolvida por Gabriel Carvalho Costa, com toda sua dessabedoria do multiverso, êle escreveu cada neurônio meu!"
     ]
   },
   "who_are_you": {
@@ -104,7 +106,7 @@
       "ajuda"
     ],
     "answers": [
-      "Oi, eu sou Lúnis, sou a assistente virtual de Gabriel Oak. Posso vazer várias coisas, como ler as últimas manchetes, contar uma piada, ou conversar com você caso esteja se sentindo solitário!"
+      "Oi, eu sou Lúnis, sou a assistente virtual de Gabriel Oak. Posso fazer várias coisas, como ler as últimas manchetes, contar uma piada, ou conversar com você caso esteja se sentindo solitário!"
     ]
   }
 }

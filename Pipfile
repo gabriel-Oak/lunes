@@ -5,7 +5,7 @@ name = "pypi"
 
 [packages]
 pyaudio = "*"
-speechrecognition = "*"
+speech_recognition = "*"
 playsound = "*"
 gtts = "*"
 boto3 = "*"
@@ -13,9 +13,9 @@ requests = "*"
 bs4 = "*"
 spotify2py = "*"
 python-decouple = "*"
-tuya-iot-py-sdk = "*"
+tuya_connector = "*"
 
 [dev-packages]
 
 [requires]
-python_version = "3.8"
+python_version = "3.9"

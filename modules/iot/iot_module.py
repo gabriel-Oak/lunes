@@ -4,11 +4,11 @@ from modules.iot.iot_device import IotDevice
 import random
 import logging
 from typing import Dict, Union
-from tuya_iot.openapi import TuyaTokenInfo
+from tuya_connector.openapi import TuyaTokenInfo
 from utils.intent import Intent
 from utils.module import Module
 from utils.play_audio import play_audio
-from tuya_iot import TuyaOpenAPI , tuya_logger
+from tuya_connector import TuyaOpenAPI, TUYA_LOGGER
 from decouple import config
 import difflib
 from re import sub, findall
@@ -113,7 +113,7 @@ class IotModule(Module):
 
   def setup_iot(self):
     try:
-      tuya_logger.setLevel(logging.DEBUG)
+      TUYA_LOGGER.setLevel(logging.DEBUG)
       self.openapi = TuyaOpenAPI(TUYA_URL, TUYA_ID, TUYA_SECRET)
       res = self.openapi.get('/v1.0/token?grant_type=1')
       self.openapi.token_info = TuyaTokenInfo(res)

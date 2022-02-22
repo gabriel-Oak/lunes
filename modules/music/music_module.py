@@ -29,10 +29,7 @@ class MusicModule(Module):
         answers=intent['answers'],
       )
 
-    self.token = Spotify().get_token(
-      CLIENT_ID=SPOTIFY_ID, 
-      CLIENT_SECRET=SPOTIFY_SECRET
-    )
+    self.token = Spotify().get_token()
     self.spotify = Spotify(token=self.token)
     super().__init__(intents)
 
