@@ -1,4 +1,5 @@
 __pycache__
 .env
 .vscode/
-adiuos/tts.mp3
+audios/tts.mp3
+venv/

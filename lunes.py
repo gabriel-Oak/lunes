@@ -13,51 +13,49 @@ with open('intents/general.json') as general:
 ai = AIModule()
 
 def process_command(trigger: str, speech_initial: str):
-  tryies = 0
+  tries = 0
   while True:
     try:
       print('[log] processando comando')
       speech: str = sub(r'\s{2}', ' ', ''.join(speech_initial.split(trigger)))
       
-      if len(speech_initial) == len(trigger) or tryies > 0: 
+      if len(speech_initial) == len(trigger) or tries > 0: 
         speech = listen()
 
       for module in MODULES:
         intent = module.checkIntent(speech)
         if type(intent) == str: 
           return module.process_command(intent, speech)
-
-      ai.generate(speech) 
-
-      raise Exception('Não entendi, tente de novo!')
+      return ai.generateLocal(speech) 
 
     except sr.UnknownValueError:
       print('[log] Não entendi o quê você disse. Ou você não disse nada haha!')
 
     except Exception as e:
-      if tryies > 3: return None 
-      tryies += 1
+      if tries > 3: return None 
+      tries += 1
       play_audio(str(e))
       playsound('audios/trigger.mp3')
 
 def monitor():
-  while True:
-    try:
-      print('[log] monitorando trigger')
-      speech = listen()
+  with ai.model.chat_session(ai.system_prompt):
+    while True:
+      try:
+        print('[log] monitorando trigger')
+        speech = listen()
 
-      for trigger in general_intents['trigger']['triggers']:
-        if trigger in speech: 
-          playsound('audios/trigger.mp3')
-          process_command(trigger, speech)
-          break
+        for trigger in general_intents['trigger']['triggers']:
+          if trigger in speech: 
+            playsound('audios/trigger.mp3')
+            process_command(trigger, speech)
+            break
 
-    except sr.UnknownValueError:
-      print('[log] Não entendi o quê você disse. Ou você não disse nada haha!')
+      except sr.UnknownValueError:
+        print('[log] Não entendi o quê você disse. Ou você não disse nada haha!')
 
-    except sr.RequestError as e:
-      print('[log] Error; {0}'.format(e))
-      play_audio('Algo deu errado, você está conectado à internet?')
+      except sr.RequestError as e:
+        print('[log] Error; {0}'.format(e))
+        play_audio('Algo deu errado, você está conectado à internet?')
 
 play_audio('Olá! Eu sou Lúnis!')
 monitor()
