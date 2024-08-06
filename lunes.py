@@ -5,9 +5,12 @@ from utils.play_audio import play_audio
 import speech_recognition as sr
 from playsound import playsound
 from re import sub
+from modules.ai.ai_module import AIModule
 
 with open('intents/general.json') as general:
   general_intents = json.load(general)
+
+ai = AIModule()
 
 def process_command(trigger: str, speech_initial: str):
   tryies = 0
@@ -23,6 +26,9 @@ def process_command(trigger: str, speech_initial: str):
         intent = module.checkIntent(speech)
         if type(intent) == str: 
           return module.process_command(intent, speech)
+
+      ai.generate(speech) 
+
       raise Exception('Não entendi, tente de novo!')
 
     except sr.UnknownValueError:
