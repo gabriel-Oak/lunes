@@ -26,6 +26,7 @@ def listen_background(callback):
 def listen() -> str:
   recognizer = sr.Recognizer()
   with sr.Microphone() as source:
+    recognizer.adjust_for_ambient_noise(source)
     audio = recognizer.listen(source)
   speech = recognizer.recognize_google(audio, language='pt-BR').lower()
   print('[input] ' + speech)
