@@ -9,7 +9,14 @@ class AIModule:
   
   def __init__(self) -> None:
     self.system_prompt = system_prompt
+    self.load_model()
+      
+  def load_model(self):
     self.model = GPT4All(model_name)
+    
+  def start_session(self):
+    print('[log] iniciando sessão com AI')
+    return self.model.chat_session(self.system_prompt)
 
   def generateLocal(self, speech: str) -> None:
     print('[log] gerando resposta com AI')

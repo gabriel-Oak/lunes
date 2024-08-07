@@ -38,7 +38,7 @@ def process_command(trigger: str, speech_initial: str):
       playsound('audios/trigger.mp3')
 
 def monitor():
-  with ai.model.chat_session(ai.system_prompt):
+  with ai.start_session():
     while True:
       try:
         print('[log] monitorando trigger')

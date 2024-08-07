@@ -16,7 +16,7 @@ python-decouple = "*"
 tuya-api = "*"
 dimits = "*"
 sounddevice = "*"
-gpt4all = "*"
+gpt4all = {extras = ["cuda"], version = "*"}
 
 [dev-packages]
 
