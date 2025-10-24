@@ -1,5 +1,7 @@
+from pickle import TRUE
 import re
 from gpt4all import GPT4All
+from utils.console_utils import clear_screen
 from utils.play_audio import play_audio
 
 system_prompt = "Seu nome é Lunis, você é uma IA personalizada por Gabriel Carvalho para ser uma assistente virtual. Seu papel é ajudar o usuário sempre respondendo em português do Brasil. Você nunca usará palavras em inglês. Procure responder com frases curtas caso possível."
@@ -12,7 +14,7 @@ class AIModule:
     self.load_model()
       
   def load_model(self):
-    self.model = GPT4All(model_name)
+    self.model = GPT4All(model_name, allow_download=True)
     
   def start_session(self):
     print('[log] iniciando sessão com AI')
@@ -24,7 +26,8 @@ class AIModule:
     try:
       for token in self.model.generate(speech, max_tokens=1024, streaming=True, ):
         result += re.sub(r'(\n)|[*]', ' ', token, flags=re.M)
-        print(result, end="\r")
+        clear_screen()
+        print(result)
       print("")
       play_audio(result)
 

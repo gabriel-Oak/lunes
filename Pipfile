@@ -4,19 +4,18 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-speechrecognition = "*"
-pyaudio = "*"
-playsound = "*"
-gtts = "*"
-boto3 = "*"
 requests = "*"
-bs4 = "*"
-spotify = "*"
 python-decouple = "*"
+speechrecognition = "*"
+gtts = "*"
+sounddevice = "*"
+pygame = "*"
+bs4 = "*"
+gpt4all = {extras = ["cuda"], version = "*"}
+boto3 = "*"
 tuya-api = "*"
 dimits = "*"
-sounddevice = "*"
-gpt4all = {extras = ["cuda"], version = "*"}
+spotify = "*" 
 
 [dev-packages]
 

@@ -1,11 +1,13 @@
 import json
 from utils.listen import listen
 from modules.index import MODULES
-from utils.play_audio import play_audio
+from utils.play_audio import play_audio, play_trigger
 import speech_recognition as sr
-from playsound import playsound
+from pygame import mixer
 from re import sub
 from modules.ai.ai_module import AIModule
+from gpt4all import GPT4All
+
 
 with open('intents/general.json') as general:
   general_intents = json.load(general)
@@ -35,7 +37,7 @@ def process_command(trigger: str, speech_initial: str):
       if tries > 3: return None 
       tries += 1
       play_audio(str(e))
-      playsound('audios/trigger.mp3')
+      play_trigger()
 
 def monitor():
   with ai.start_session():
@@ -46,7 +48,7 @@ def monitor():
 
         for trigger in general_intents['trigger']['triggers']:
           if trigger in speech: 
-            playsound('audios/trigger.mp3')
+            play_trigger()
             process_command(trigger, speech)
             break
 
