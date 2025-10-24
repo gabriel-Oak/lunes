@@ -6,7 +6,6 @@ import speech_recognition as sr
 from pygame import mixer
 from re import sub
 from modules.ai.ai_module import AIModule
-from gpt4all import GPT4All
 
 
 with open('intents/general.json') as general:
