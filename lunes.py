@@ -1,19 +1,23 @@
 import json
+import threading
+import time
+from utils.is_running import is_running
 from utils.listen import listen
 from modules.index import MODULES
-from utils.play_audio import play_audio, play_trigger
+from utils.play_audio import play_audio, play_trigger, speak_thread
 import speech_recognition as sr
-from pygame import mixer
 from re import sub
 from modules.ai.ai_module import AIModule
 
+speakThread = threading.Thread(target=speak_thread, daemon=True)
+speakThread.start()
 
 with open('intents/general.json') as general:
   general_intents = json.load(general)
 
 ai = AIModule()
 
-def process_command(trigger: str, speech_initial: str):
+def process_command(trigger: str, speech_initial: str) -> bool:
   tries = 0
   while True:
     try:
@@ -26,7 +30,7 @@ def process_command(trigger: str, speech_initial: str):
       for module in MODULES:
         intent = module.checkIntent(speech)
         if type(intent) == str: 
-          return module.process_command(intent, speech)
+          return module.process_command(intent, speech).__bool__()
       return ai.generateLocal(speech) 
 
     except sr.UnknownValueError:
@@ -40,16 +44,20 @@ def process_command(trigger: str, speech_initial: str):
 
 def monitor():
   with ai.start_session():
+    continueConversation = False
     while True:
       try:
-        print('[log] monitorando trigger')
-        speech = listen()
+        if continueConversation:
+          continueConversation = process_command(speech, speech)
+        else:
+          print('[log] monitorando trigger')
+          speech = listen()
 
-        for trigger in general_intents['trigger']['triggers']:
-          if trigger in speech: 
-            play_trigger()
-            process_command(trigger, speech)
-            break
+          for trigger in general_intents['trigger']['triggers']:
+            if trigger in speech: 
+              play_trigger()
+              continueConversation = process_command(trigger, speech)
+              break
 
       except sr.UnknownValueError:
         print('[log] Não entendi o quê você disse. Ou você não disse nada haha!')
@@ -57,6 +65,14 @@ def monitor():
       except sr.RequestError as e:
         print('[log] Error; {0}'.format(e))
         play_audio('Algo deu errado, você está conectado à internet?')
+        
+      except KeyboardInterrupt:
+        print("\n ⚠️  \033[1mEncerrando...\033[0m")
+        is_running.clear()
+        time.sleep(0.3)
+        break
 
 play_audio('Olá! Eu sou Lúnis!')
 monitor()
+
+is_running.clear()

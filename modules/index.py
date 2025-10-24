@@ -8,8 +8,8 @@ from modules.dialogue.dialogue_module import DialogueModule
 
 MODULES: List[Module] = [
   NewsModule(),
-  # FunModule(),
-  # DialogueModule(),
+  FunModule(),
+  DialogueModule(),
   # MusicModule(),
   # IotModule()
 ]

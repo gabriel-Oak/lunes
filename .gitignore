@@ -3,3 +3,4 @@ __pycache__
 .vscode/
 audios/tts.mp3
 venv/
+model/**

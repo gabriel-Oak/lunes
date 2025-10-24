@@ -11,11 +11,13 @@ gtts = "*"
 sounddevice = "*"
 pygame = "*"
 bs4 = "*"
-gpt4all = {extras = ["cuda"], version = "*"}
+gpt4all = "*"
+pyaudio = "*"
 boto3 = "*"
 tuya-api = "*"
 dimits = "*"
 spotify = "*" 
+vosk = "*"
 
 [dev-packages]
 

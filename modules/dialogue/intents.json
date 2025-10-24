@@ -7,7 +7,7 @@
       "esquece",
       "cancela"
     ],
-    "answers": ["Ok, cancelando!", "Tá bom!", "Tudo bem!", "Adíos!", "Ok!"]
+    "answers": ["Ok, cancelando! 🙁", "Tá bom! 🙁", "Tudo bem! 🙁", "Adiós! 🙁", "Ok! 🙁"]
   },
   "good_morning": {
     "triggers": ["bom dia", "boa manhã"],

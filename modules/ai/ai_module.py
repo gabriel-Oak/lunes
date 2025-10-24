@@ -14,22 +14,38 @@ class AIModule:
     self.load_model()
       
   def load_model(self):
-    self.model = GPT4All(model_name, allow_download=True)
+    self.model = GPT4All(model_name, allow_download=False)
     
   def start_session(self):
     print('[log] iniciando sessão com AI')
     return self.model.chat_session(self.system_prompt)
 
-  def generateLocal(self, speech: str) -> None:
+  def generateLocal(self, speech: str) -> bool:
     print('[log] gerando resposta com AI')
-    result = ''
+    accumulated_result = ''
+    processing_result = ''
+    
     try:
       for token in self.model.generate(speech, max_tokens=1024, streaming=True, ):
-        result += re.sub(r'(\n)|[*]', ' ', token, flags=re.M)
+        sanitized_token = re.sub(r'(\n)|[*]', ' ', token, flags=re.M)
+        accumulated_result += sanitized_token
+        processing_result += sanitized_token
+        match = re.search(r'[.!?,;:-]', processing_result)
+        
+        if match:
+          phrase = processing_result[:match.start()].strip()
+          if phrase:
+            play_audio(phrase)
+          processing_result = processing_result[match.end():].strip()
         clear_screen()
-        print(result)
-      print("")
-      play_audio(result)
+        print(accumulated_result)
+      
+      if len(processing_result) > 0:
+        play_audio(processing_result)
+      # play_audio(accumulated_result)
+      if '?' in accumulated_result:
+        return True
+      return False
 
     except Exception as e:
       print(e)

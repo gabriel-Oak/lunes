@@ -28,10 +28,10 @@ class NewsModule(Module):
     try:
       source = get('https://news.google.com/rss?hl=pt-BR&gl=BR&ceid=BR:pt-419')
       news = BeautifulSoup(source.text, 'html.parser')
-
       play_audio(random.choice(self.intents[intent].answers))
       for item in news.findAll('item')[:10]:
         title = item.title.text
+        print('[news]', title)
         play_audio(title)
     except Exception as e:
       print(e)
